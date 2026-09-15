@@ -3,121 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>S.H.L</title>
+<title>S.H.L | فروشگاه</title>
 
 <style>
 *{box-sizing:border-box}
-body{
-margin:0;
-font-family:Tahoma,Arial;
-background:#f4f4f4;
-color:#111
-}
-header{
-background:#111;
-color:white;
-padding:18px 25px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-position:sticky;
-top:0
-}
-.logo{
-font-size:28px;
-font-weight:bold;
-letter-spacing:4px
-}
-header button{
-background:white;
-border:0;
-padding:10px 16px;
-border-radius:10px;
-font-weight:bold
-}
-.hero{
-background:#111;
-color:white;
-margin:20px auto;
-max-width:1100px;
-padding:70px 30px;
-border-radius:25px
-}
-.hero h1{
-font-size:55px;
-margin:0
-}
-.hero p{
-color:#bbb;
-font-size:18px
-}
-.hero button{
-padding:13px 25px;
-border:0;
-border-radius:10px;
-font-weight:bold
-}
-main{
-max-width:1100px;
-margin:auto;
-padding:10px 20px 50px
-}
-h2{
-margin-top:30px
-}
-.products{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px
-}
-.card{
-background:white;
-padding:20px;
-border-radius:18px;
-box-shadow:0 5px 20px #0001
-}
-.pic{
-height:150px;
-background:#eee;
-border-radius:14px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:65px
-}
-.card h3{
-margin-bottom:5px
-}
-.price{
-font-weight:bold;
-margin:12px 0
-}
-.add{
-width:100%;
-padding:11px;
-background:#111;
-color:white;
-border:0;
-border-radius:9px
-}
-footer{
-background:#111;
-color:white;
-text-align:center;
-padding:30px
-}
+body{margin:0;font-family:Tahoma,Arial;background:#f4f4f4;color:#111}
+header{background:#111;color:white;padding:15px 20px;position:sticky;top:0;z-index:5}
+.nav{max-width:1100px;margin:auto;display:flex;align-items:center;gap:15px}
+.logo{font-size:27px;font-weight:bold;letter-spacing:3px}
+.search{flex:1}
+.search input{width:100%;padding:12px;border:0;border-radius:10px;outline:0}
+.cart{background:white;border:0;padding:11px 15px;border-radius:10px;font-weight:bold}
+
+.hero{max-width:1100px;margin:20px auto;padding:60px 30px;background:#111;color:white;border-radius:25px}
+.hero h1{font-size:55px;margin:0}
+.hero p{color:#bbb}
+.hero button{padding:12px 22px;border:0;border-radius:10px}
+
+main{max-width:1100px;margin:auto;padding:10px 20px 50px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.cat{padding:10px 18px;border:1px solid #ddd;background:white;border-radius:25px}
+.cat.active{background:#111;color:white}
+
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;padding:15px;border-radius:18px;box-shadow:0 5px 20px #0001}
+.pic{height:160px;background:#eee;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:65px}
+.card h3{margin-bottom:5px}
+.card p{color:#777;font-size:13px}
+.price{font-weight:bold;margin:12px 0}
+.add{width:100%;padding:11px;background:#111;color:white;border:0;border-radius:9px}
+
+.cartbox{display:none;position:fixed;right:15px;top:80px;width:320px;max-width:90%;background:white;padding:20px;border-radius:18px;box-shadow:0 10px 35px #0003;z-index:10}
+.cartbox.show{display:block}
+.item{padding:10px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between}
+.item button{border:0;background:none}
+
+footer{background:#111;color:white;text-align:center;padding:30px}
+
 @media(max-width:700px){
-.products{
-grid-template-columns:repeat(2,1fr)
+.nav{flex-wrap:wrap}
+.logo{width:100%;text-align:center}
+.search{width:100%}
+.products{grid-template-columns:repeat(2,1fr)}
 }
-}
+
 @media(max-width:450px){
-.products{
-grid-template-columns:1fr
-}
-.hero h1{
-font-size:42px
-}
+.products{grid-template-columns:1fr}
+.hero h1{font-size:42px}
 }
 </style>
 </head>
@@ -125,10 +57,19 @@ font-size:42px
 <body>
 
 <header>
+<div class="nav">
+
 <div class="logo">S.H.L</div>
-<button onclick="alert('سبد خرید شما خالی است')">
-🛒 سبد خرید
+
+<div class="search">
+<input id="search" placeholder="جستجوی محصول..." oninput="search()">
+</div>
+
+<button class="cart" onclick="toggleCart()">
+🛒 سبد خرید <span id="count">0</span>
 </button>
+
+</div>
 </header>
 
 <section class="hero">
@@ -137,56 +78,194 @@ font-size:42px
 
 <p>فروشگاه مدرن و متفاوت شما</p>
 
-<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-مشاهده محصولات
-</button>
+<button onclick="goProducts()">مشاهده محصولات</button>
 
 </section>
 
 <main>
 
-<h2>محصولات منتخب</h2>
+<h2>دسته‌بندی محصولات</h2>
+
+<div class="cats">
+
+<button class="cat active" onclick="filter('all',this)">همه</button>
+<button class="cat" onclick="filter('digital',this)">دیجیتال</button>
+<button class="cat" onclick="filter('fashion',this)">پوشاک</button>
+<button class="cat" onclick="filter('home',this)">خانه</button>
+
+</div>
+
+<h2 id="productsTitle">محصولات</h2>
 
 <div class="products" id="products">
 
-<div class="card">
+<div class="card" data-cat="digital" data-name="هدفون">
 <div class="pic">🎧</div>
 <h3>هدفون بی‌سیم</h3>
 <p>صدای باکیفیت و طراحی مدرن</p>
 <div class="price">۱,۲۵۰,۰۰۰ تومان</div>
-<button class="add" onclick="alert('محصول به سبد اضافه شد')">
-افزودن به سبد
-</button>
+<button class="add" onclick="add('هدفون بی‌سیم',1250000)">افزودن به سبد</button>
 </div>
 
-<div class="card">
+<div class="card" data-cat="digital" data-name="ساعت">
 <div class="pic">⌚</div>
 <h3>ساعت هوشمند</h3>
 <p>مناسب استفاده روزمره</p>
 <div class="price">۲,۴۰۰,۰۰۰ تومان</div>
-<button class="add" onclick="alert('محصول به سبد اضافه شد')">
-افزودن به سبد
-</button>
+<button class="add" onclick="add('ساعت هوشمند',2400000)">افزودن به سبد</button>
 </div>
 
-<div class="card">
+<div class="card" data-cat="fashion" data-name="هودی">
+<div class="pic">👕</div>
+<h3>هودی اسپرت</h3>
+<p>ساده و شیک</p>
+<div class="price">۸۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('هودی اسپرت',890000)">افزودن به سبد</button>
+</div>
+
+<div class="card" data-cat="fashion" data-name="کفش">
 <div class="pic">👟</div>
 <h3>کفش اسپرت</h3>
 <p>راحت و مناسب روزمره</p>
 <div class="price">۱,۷۵۰,۰۰۰ تومان</div>
-<button class="add" onclick="alert('محصول به سبد اضافه شد')">
-افزودن به سبد
-</button>
+<button class="add" onclick="add('کفش اسپرت',1750000)">افزودن به سبد</button>
+</div>
+
+<div class="card" data-cat="home" data-name="چراغ">
+<div class="pic">💡</div>
+<h3>چراغ مطالعه</h3>
+<p>طراحی مینیمال</p>
+<div class="price">۵۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('چراغ مطالعه',590000)">افزودن به سبد</button>
+</div>
+
+<div class="card" data-cat="home" data-name="ماگ">
+<div class="pic">☕</div>
+<h3>ماگ سرامیکی</h3>
+<p>ساده و زیبا</p>
+<div class="price">۲۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('ماگ سرامیکی',290000)">افزودن به سبد</button>
 </div>
 
 </div>
 
 </main>
 
+<div class="cartbox" id="cartbox">
+
+<h2>🛒 سبد خرید</h2>
+
+<div id="items">سبد خرید خالی است.</div>
+
+<p>
+مجموع:
+<strong id="total">۰</strong>
+تومان
+</p>
+
+</div>
+
 <footer>
 <strong>S.H.L</strong>
 <p>فروشگاه اینترنتی S.H.L</p>
 </footer>
+
+<script>
+
+let cart=[];
+
+function add(name,price){
+
+cart.push({name:name,price:price});
+update();
+document.getElementById("cartbox").classList.add("show");
+
+}
+
+function update(){
+
+document.getElementById("count").textContent=cart.length;
+
+let box=document.getElementById("items");
+let total=0;
+
+if(cart.length===0){
+box.innerHTML="سبد خرید خالی است.";
+document.getElementById("total").textContent="۰";
+return;
+}
+
+box.innerHTML="";
+
+cart.forEach(function(x,i){
+
+total+=x.price;
+
+box.innerHTML+=
+'<div class="item">'+
+'<span>'+x.name+'</span>'+
+'<button onclick="removeItem('+i+')">❌</button>'+
+'</div>';
+
+});
+
+document.getElementById("total").textContent=
+total.toLocaleString("fa-IR");
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1);
+update();
+
+}
+
+function toggleCart(){
+
+document.getElementById("cartbox").classList.toggle("show");
+
+}
+
+function filter(cat,btn){
+
+document.querySelectorAll(".cat").forEach(function(x){
+x.classList.remove("active");
+});
+
+btn.classList.add("active");
+
+document.querySelectorAll(".card").forEach(function(x){
+
+x.style.display=
+cat==="all"||x.dataset.cat===cat?"":"none";
+
+});
+
+}
+
+function search(){
+
+let q=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(function(x){
+
+x.style.display=
+x.dataset.name.toLowerCase().includes(q)?"":"none";
+
+});
+
+}
+
+function goProducts(){
+
+document.getElementById("productsTitle").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
 
 </body>
 </html>

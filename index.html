@@ -1,82 +1,2018 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>S.H.L | فروشگاه</title>
+<title>S.H.L Store | فروشگاه آنلاین</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Tahoma, Arial, sans-serif;
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#f5f7fb;
+    --white:#ffffff;
+    --dark:#101828;
+    --text:#182230;
+    --muted:#667085;
+    --primary:#6c4df6;
+    --primary2:#8b5cf6;
+    --border:#e7eaf0;
+    --green:#12b76a;
+    --red:#f04438;
+    --shadow:0 15px 45px rgba(16,24,40,.08);
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.8;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    min-height:75px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:900;
+    color:var(--dark);
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+.nav-links{
+    display:flex;
+    gap:27px;
+    font-size:14px;
+    color:#475467;
+}
+
+.nav-links a{
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.nav-btn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:12px;
+    position:relative;
+    font-size:18px;
+}
+
+.nav-btn:hover{
+    border-color:var(--primary);
+}
+
+.count{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    font-size:10px;
+    display:grid;
+    place-items:center;
+    top:-5px;
+    left:-5px;
+}
+
+/* PAGES */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+    padding:55px 20px;
+}
+
+.hero-box{
+    min-height:500px;
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:55px;
+    color:white;
+    background:
+        linear-gradient(90deg,rgba(16,24,40,.98),rgba(16,24,40,.7)),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero-label{
+    display:inline-block;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    padding:7px 13px;
+    border-radius:30px;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(38px,5vw,65px);
+    line-height:1.15;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#b9a8ff;
+}
+
+.hero p{
+    color:#d0d5dd;
+    max-width:560px;
+    font-size:15px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:28px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    padding:13px 22px;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#5840d8;
+}
+
+.btn-light{
+    background:white;
+    color:var(--dark);
+}
+
+.btn-outline{
+    background:white;
+    color:var(--dark);
+    border:1px solid var(--border);
+}
+
+.btn-danger{
+    background:#fff0ef;
+    color:var(--red);
+}
+
+/* SECTIONS */
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:55px 20px;
+}
+
+.section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.section-head h2{
+    font-size:30px;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+
+.category{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px 15px;
+    text-align:center;
+    transition:.25s;
+}
+
+.category:hover{
+    transform:translateY(-5px);
+    border-color:#b8aafc;
+    box-shadow:var(--shadow);
+}
+
+.category-icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.category strong{
+    display:block;
+}
+
+.category small{
+    color:var(--muted);
+}
+
+/* PRODUCTS */
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+}
+
+.search{
+    flex:1;
+    min-width:250px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    height:48px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:12px;
+    padding:0 18px;
+    outline:none;
+}
+
+.search input:focus{
+    border-color:var(--primary);
+}
+
+.select{
+    height:48px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:12px;
+    padding:0 15px;
+    outline:none;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.product{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.25s;
+    position:relative;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.product-image{
+    height:235px;
+    position:relative;
+    background:#f8f9fb;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.product:hover img{
+    transform:scale(1.06);
+}
+
+.favorite{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:11px;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    z-index:2;
+    font-size:18px;
+}
+
+.favorite.active{
+    color:#f04438;
+}
+
+.product-tag{
+    position:absolute;
+    right:12px;
+    top:12px;
+    background:var(--primary);
+    color:white;
+    padding:5px 9px;
+    border-radius:8px;
+    font-size:10px;
+    z-index:2;
+}
+
+.product-info{
+    padding:17px;
+}
+
+.product-title{
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.product-desc{
+    color:var(--muted);
+    font-size:11px;
+    min-height:42px;
+}
+
+.stars{
+    color:#fdb022;
+    font-size:12px;
+    margin:8px 0;
+}
+
+.price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:10px;
+}
+
+.price{
+    font-size:17px;
+    font-weight:900;
+}
+
+.price small{
+    display:block;
+    font-size:9px;
+    color:var(--muted);
+    font-weight:normal;
+}
+
+.add-btn{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:11px;
+    background:var(--primary);
+    color:white;
+    font-size:20px;
+}
+
+/* PROMO */
+
+.promo{
+    margin-top:30px;
+    min-height:240px;
+    border-radius:25px;
+    padding:40px;
+    color:white;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(90deg,rgba(108,77,246,.95),rgba(73,55,170,.88)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80")
+        center/cover;
+}
+
+.promo h2{
+    font-size:35px;
+    max-width:550px;
+}
+
+.promo p{
+    color:#e6e1ff;
+    margin:10px 0 20px;
+}
+
+/* PRODUCT DETAIL */
+
+.detail{
+    max-width:1150px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.detail-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.detail-image{
+    height:500px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#f8f9fb;
+}
+
+.detail-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.detail-info{
+    padding:20px 10px;
+}
+
+.detail-info h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.detail-rating{
+    color:#fdb022;
+    margin:10px 0;
+}
+
+.detail-price{
+    font-size:28px;
+    font-weight:900;
+    margin:20px 0;
+}
+
+.detail-info p{
+    color:var(--muted);
+    line-height:2;
+}
+
+.specs{
+    margin:25px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.spec{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid #f0f1f4;
+    font-size:13px;
+}
+
+.spec:last-child{
+    border-bottom:0;
+}
+
+.spec span:first-child{
+    color:var(--muted);
+}
+
+/* CART */
+
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:1900;
+    display:none;
+}
+
+.cart-overlay.active{
+    display:block;
+}
+
+.cart{
+    position:fixed;
+    top:0;
+    left:-430px;
+    width:400px;
+    max-width:90%;
+    height:100vh;
+    background:white;
+    z-index:2000;
+    box-shadow:20px 0 60px rgba(0,0,0,.2);
+    transition:.35s;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart.active{
+    left:0;
+}
+
+.cart-head{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.close{
+    border:0;
+    background:none;
+    font-size:26px;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:15px;
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    padding:12px;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info strong{
+    font-size:13px;
+}
+
+.cart-item-info small{
+    color:var(--muted);
+    display:block;
+}
+
+.cart-controls{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:5px;
+}
+
+.qty{
+    width:27px;
+    height:27px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:7px;
+}
+
+.cart-footer{
+    padding:20px;
+    border-top:1px solid var(--border);
+}
+
+.total-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+/* ABOUT */
+
+.about{
+    max-width:950px;
+    margin:auto;
+    padding:70px 20px;
+}
+
+.about-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:45px;
+    box-shadow:var(--shadow);
+}
+
+.about-box h1{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    color:var(--muted);
+    line-height:2.2;
+    margin-bottom:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:30px;
+}
+
+.stat{
+    background:#f7f7fb;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    color:var(--primary);
+    font-size:25px;
+}
+
+/* CONTACT */
+
+.contact{
+    max-width:950px;
+    margin:auto;
+    padding:70px 20px;
+}
+
+.contact-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:35px;
+}
+
+.form{
+    display:grid;
+    gap:15px;
+    margin-top:20px;
+}
+
+.form input,
+.form textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    outline:none;
+}
+
+.form textarea{
+    height:140px;
+    resize:none;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:40px;
+    background:#101828;
+    color:white;
+}
+
+.footer{
+    max-width:1250px;
+    margin:auto;
+    padding:45px 20px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+}
+
+.footer h3{
+    margin-bottom:12px;
+}
+
+.footer p,
+.footer a{
+    color:#98a2b3;
+    font-size:13px;
+    display:block;
+    margin:6px 0;
+}
+
+.copyright{
+    border-top:1px solid #263244;
+    padding:18px 20px;
+    text-align:center;
+    color:#98a2b3;
+    font-size:12px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#101828;
+    color:white;
+    padding:13px 18px;
+    border-radius:12px;
+    z-index:5000;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+    .nav-links{
+        display:none;
     }
 
-    body {
-      background: #0b0b12;
-      color: white;
-      min-height: 100vh;
+    .hero-box{
+        grid-template-columns:1fr;
+        padding:40px;
     }
 
-    header {
-      padding: 25px 15px;
-      text-align: center;
-      background: linear-gradient(135deg, #17172b, #0d0d18);
-      border-bottom: 1px solid #333;
+    .categories{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    header h1 {
-      font-size: 42px;
-      letter-spacing: 4px;
-      color: #00e5ff;
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    header p {
-      margin-top: 10px;
-      color: #aaa;
+    .detail-box{
+        grid-template-columns:1fr;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding: 15px;
-      background: #11111b;
+    .footer{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        padding:0 12px;
     }
 
-    nav button {
-      border: none;
-      padding: 11px 20px;
-      border-radius: 25px;
-      background: #202033;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
+    .hero{
+        padding:20px 12px;
     }
 
-    nav button:hover {
-      background: #00e5ff;
-      color: black;
+    .hero-box{
+        padding:30px 20px;
+        min-height:500px;
     }
 
-    .hero {
-      text-align: center;
-      padding: 65px 20px;
-      background:
-        radial-gradient(circle at center, #17354a 0%, #0b0b12 55%);
+    .hero h1{
+        font-size:40px;
     }
 
-    .hero h2 {
-      font-size: 35px;
-      margin-bottom: 15px;
+    .container,
+    .detail,
+    .about,
+    .contact{
+        padding-left:12px;
+        padding-right:12px;
     }
 
-    .hero span {
-      color: #00e5ff;
+    .categories{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .hero p {
-      color:
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-head h2{
+        font-size:25px;
+    }
+
+    .detail-image{
+        height:350px;
+    }
+
+    .footer{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="navbar">
+
+<a href="#" class="logo" onclick="showPage('home')">
+S.<span>H</span>.L
+</a>
+
+<nav class="nav-links">
+<a href="#" onclick="showPage('home')">خانه</a>
+<a href="#" onclick="showPage('shop')">فروشگاه</a>
+<a href="#" onclick="showPage('about')">درباره ما</a>
+<a href="#" onclick="showPage('contact')">تماس با ما</a>
+</nav>
+
+<div class="nav-actions">
+
+<button class="nav-btn" onclick="showPage('shop')">
+🔍
+</button>
+
+<button class="nav-btn" onclick="openCart()">
+🛒
+<span class="count" id="cartCount">0</span>
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HOME -->
+
+<div class="page active" id="home">
+
+<section class="hero">
+
+<div class="hero-box">
+
+<div class="hero-content">
+
+<span class="hero-label">
+فروشگاه آنلاین S.H.L
+</span>
+
+<h1>
+انتخاب بهتر،
+<br>
+<span>زندگی بهتر.</span>
+</h1>
+
+<p>
+جدیدترین محصولات دیجیتال و لوازم کاربردی
+را با تجربه‌ای سریع، ساده و مدرن خریداری کنید.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn btn-primary"
+onclick="showPage('shop')">
+مشاهده فروشگاه
+</button>
+
+<button class="btn btn-light"
+onclick="showPage('about')">
+درباره فروشگاه
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="section-head">
+
+<div>
+<h2>دسته‌بندی محصولات</h2>
+<p>محصول مورد نظر خود را سریع پیدا کنید</p>
+</div>
+
+</div>
+
+<div class="categories">
+
+<button class="category" onclick="setCategory('موبایل')">
+<div class="category-icon">📱</div>
+<strong>موبایل</strong>
+<small>گوشی و لوازم جانبی</small>
+</button>
+
+<button class="category" onclick="setCategory('لپ‌تاپ')">
+<div class="category-icon">💻</div>
+<strong>لپ‌تاپ</strong>
+<small>کامپیوتر و تجهیزات</small>
+</button>
+
+<button class="category" onclick="setCategory('صوتی')">
+<div class="category-icon">🎧</div>
+<strong>صوتی</strong>
+<small>هدفون و اسپیکر</small>
+</button>
+
+<button class="category" onclick="setCategory('گیمینگ')">
+<div class="category-icon">🎮</div>
+<strong>گیمینگ</strong>
+<small>لوازم مخصوص بازی</small>
+</button>
+
+<button class="category" onclick="setCategory('هوشمند')">
+<div class="category-icon">⌚</div>
+<strong>هوشمند</strong>
+<small>ساعت و گجت</small>
+</button>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="section-head">
+
+<div>
+<h2>محبوب‌ترین محصولات</h2>
+<p>انتخاب‌های محبوب مشتریان</p>
+</div>
+
+<button class="btn btn-outline"
+onclick="showPage('shop')">
+مشاهده همه
+</button>
+
+</div>
+
+<div class="products" id="homeProducts"></div>
+
+</section>
+
+
+<section class="container">
+
+<div class="promo">
+
+<div>
+
+<h2>
+تا ۳۰٪ تخفیف
+روی محصولات منتخب
+</h2>
+
+<p>
+فرصت محدود برای خرید محصولات منتخب S.H.L
+</p>
+
+<button class="btn btn-light"
+onclick="showPage('shop')">
+خرید کنید
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- SHOP -->
+
+<div class="page" id="shop">
+
+<section class="container">
+
+<div class="section-head">
+
+<div>
+<h2>فروشگاه</h2>
+<p id="resultText">همه محصولات</p>
+</div>
+
+</div>
+
+<div class="toolbar">
+
+<div class="search">
+<input
+id="searchInput"
+placeholder="نام محصول را جستجو کنید..."
+oninput="renderShop()">
+</div>
+
+<select
+class="select"
+id="categorySelect"
+onchange="renderShop()">
+
+<option value="all">همه دسته‌ها</option>
+<option value="موبایل">موبایل</option>
+<option value="لپ‌تاپ">لپ‌تاپ</option>
+<option value="صوتی">صوتی</option>
+<option value="گیمینگ">گیمینگ</option>
+<option value="هوشمند">هوشمند</option>
+
+</select>
+
+<select
+class="select"
+id="sortSelect"
+onchange="renderShop()">
+
+<option value="default">مرتب‌سازی</option>
+<option value="low">ارزان‌ترین</option>
+<option value="high">گران‌ترین</option>
+
+</select>
+
+</div>
+
+<div class="products" id="shopProducts"></div>
+
+</section>
+
+</div>
+
+
+<!-- DETAIL -->
+
+<div class="page" id="detail">
+
+<section class="detail">
+
+<div class="detail-box">
+
+<div class="detail-image">
+<img id="detailImage" src="">
+</div>
+
+<div class="detail-info">
+
+<h1 id="detailName"></h1>
+
+<div class="detail-rating">
+★★★★★
+<span style="color:#667085;font-size:12px">
+(۲۴ نظر)
+</span>
+</div>
+
+<p id="detailDescription"></p>
+
+<div class="detail-price" id="detailPrice"></div>
+
+<div class="specs">
+
+<div class="spec">
+<span>وضعیت</span>
+<strong>موجود</strong>
+</div>
+
+<div class="spec">
+<span>گارانتی</span>
+<strong>۱۸ ماه</strong>
+</div>
+
+<div class="spec">
+<span>ارسال</span>
+<strong>۱ تا ۳ روز کاری</strong>
+</div>
+
+<div class="spec">
+<span>دسته‌بندی</span>
+<strong id="detailCategory"></strong>
+</div>
+
+</div>
+
+<button class="btn btn-primary"
+id="detailAdd">
+افزودن به سبد خرید
+</button>
+
+<button class="btn btn-outline"
+onclick="showPage('shop')">
+بازگشت به فروشگاه
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<div class="page" id="about">
+
+<section class="about">
+
+<div class="about-box">
+
+<h1>درباره S.H.L</h1>
+
+<p>
+S.H.L یک نمونه فروشگاه آنلاین مدرن است که با هدف
+ارائه تجربه‌ای ساده، سریع و حرفه‌ای برای خرید محصولات
+دیجیتال طراحی شده است.
+</p>
+
+<p>
+این نسخه برای نمایش نمونه‌کار طراحی وب ساخته شده و
+می‌تواند برای فروشگاه‌های واقعی شخصی‌سازی شود.
+نام برند، محصولات، قیمت‌ها، رنگ‌ها، تصاویر و اطلاعات
+تماس همگی قابل تغییر هستند.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>+۱۰۰</strong>
+محصول
+</div>
+
+<div class="stat">
+<strong>۲۴/۷</strong>
+پشتیبانی
+</div>
+
+<div class="stat">
+<strong>۹۸٪</strong>
+رضایت مشتری
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="page" id="contact">
+
+<section class="contact">
+
+<div class="contact-box">
+
+<h1>تماس با ما</h1>
+
+<p style="color:#667085">
+برای دریافت اطلاعات بیشتر پیام خود را ارسال کنید.
+</p>
+
+<div class="form">
+
+<input id="contactName" placeholder="نام شما">
+
+<input id="contactEmail" placeholder="ایمیل">
+
+<input id="contactSubject" placeholder="موضوع">
+
+<textarea id="contactMessage"
+placeholder="پیام شما..."></textarea>
+
+<button class="btn btn-primary"
+onclick="sendMessage()">
+ارسال پیام
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer">
+
+<div>
+<h3>S.H.L</h3>
+
+<p>
+فروشگاه آنلاین مدرن برای محصولات دیجیتال
+و لوازم کاربردی.
+</p>
+</div>
+
+<div>
+
+<h3>دسترسی سریع</h3>
+
+<a href="#" onclick="showPage('home')">خانه</a>
+<a href="#" onclick="showPage('shop')">فروشگاه</a>
+<a href="#" onclick="showPage('about')">درباره ما</a>
+<a href="#" onclick="showPage('contact')">تماس با ما</a>
+
+</div>
+
+<div>
+
+<h3>ارتباط</h3>
+
+<p>📞 ۰۲۱-۱۲۳۴۵۶۷۸</p>
+<p>✉️ info@example.com</p>
+<p>📍 تهران، ایران</p>
+
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 S.H.L — تمامی حقوق محفوظ است.
+</div>
+
+</footer>
+
+
+<!-- CART -->
+
+<div class="cart-overlay" id="cartOverlay"
+onclick="closeCart()"></div>
+
+<div class="cart" id="cart">
+
+<div class="cart-head">
+
+<strong>سبد خرید</strong>
+
+<button class="close" onclick="closeCart()">×</button>
+
+</div>
+
+<div class="cart-items" id="cartItems"></div>
+
+<div class="cart-footer">
+
+<div class="total-row">
+<span>مجموع</span>
+<strong id="cartTotal">۰ تومان</strong>
+</div>
+
+<button class="btn btn-primary"
+style="width:100%"
+onclick="checkout()">
+ادامه ثبت سفارش
+</button>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* PRODUCTS */
+
+const products=[
+
+{
+id:1,
+name:"iPhone 15 Pro",
+category:"موبایل",
+price:74900000,
+tag:"پرفروش",
+description:"گوشی پرچمدار با طراحی حرفه‌ای، دوربین قدرتمند و عملکرد سریع.",
+image:"https://images.unsplash.com/photo-1592286927505-2fd5e7f9e7f4?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:2,
+name:"Samsung Galaxy S24",
+category:"موبایل",
+price:52900000,
+tag:"جدید",
+description:"گوشی هوشمند قدرتمند سامسونگ با نمایشگر باکیفیت.",
+image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:3,
+name:"MacBook Air",
+category:"لپ‌تاپ",
+price:89900000,
+tag:"ویژه",
+description:"لپ‌تاپ سبک و قدرتمند برای کار، طراحی و استفاده روزمره.",
+image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:4,
+name:"ASUS Gaming Laptop",
+category:"لپ‌تاپ",
+price:68500000,
+tag:"گیمینگ",
+description:"لپ‌تاپ قدرتمند مخصوص بازی و اجرای نرم‌افزارهای سنگین.",
+image:"https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:5,
+name:"Sony WH-1000XM5",
+category:"صوتی",
+price:21900000,
+tag:"محبوب",
+description:"هدفون بی‌سیم حرفه‌ای با حذف نویز فعال.",
+image:"https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:6,
+name:"AirPods Pro",
+category:"صوتی",
+price:14900000,
+tag:"پرفروش",
+description:"هدفون بی‌سیم با کیفیت صدای عالی و طراحی جمع‌وجور.",
+image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:7,
+name:"Apple Watch",
+category:"هوشمند",
+price:18900000,
+tag:"جدید",
+description:"ساعت هوشمند با امکانات متنوع برای استفاده روزمره.",
+image:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:8,
+name:"Galaxy Watch",
+category:"هوشمند",
+price:12900000,
+tag:"ویژه",
+description:"ساعت هوشمند سامسونگ با طراحی زیبا و امکانات کاربردی.",
+image:"https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:9,
+name:"PlayStation Controller",
+category:"گیمینگ",
+price:5900000,
+tag:"محبوب",
+description:"دسته بازی حرفه‌ای برای تجربه بهتر بازی‌های کنسولی.",
+image:"https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:10,
+name:"Gaming Keyboard",
+category:"گیمینگ",
+price:4200000,
+tag:"گیمینگ",
+description:"کیبورد مکانیکی RGB مخصوص گیمرها.",
+image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:11,
+name:"Gaming Mouse",
+category:"گیمینگ",
+price:2600000,
+tag:"جدید",
+description:"ماوس سریع و دقیق با طراحی ارگونومیک.",
+image:"https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=900&q=85"
+},
+
+{
+id:12,
+name:"JBL Speaker",
+category:"صوتی",
+price:6900000,
+tag:"محبوب",
+description:"اسپیکر قابل حمل با صدای قدرتمند.",
+image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=85"
+}
+
+];
+
+
+/* STATE */
+
+let cart=JSON.parse(localStorage.getItem("shl_demo_cart")||"[]");
+
+let favorites=JSON.parse(localStorage.getItem("shl_demo_favorites")||"[]");
+
+
+/* PAGE */
+
+function showPage(page){
+
+document.querySelectorAll(".page").forEach(x=>{
+x.classList.remove("active");
+});
+
+const target=document.getElementById(page);
+
+if(target){
+target.classList.add("active");
+}
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+if(page==="shop"){
+renderShop();
+}
+
+}
+
+
+/* HOME */
+
+function renderHome(){
+
+const box=document.getElementById("homeProducts");
+
+box.innerHTML="";
+
+products.slice(0,4).forEach(product=>{
+box.innerHTML+=productCard(product);
+});
+
+}
+
+
+/* CARD */
+
+function productCard(product){
+
+const fav=favorites.includes(product.id);
+
+return `
+
+<div class="product">
+
+<div class="product-image">
+
+<span class="product-tag">
+${product.tag}
+</span>
+
+<button
+class="favorite ${fav?"active":""}"
+onclick="toggleFavorite(${product.id})">
+
+${fav?"♥":"♡"}
+
+</button>
+
+<img
+src="${product.image}"
+alt="${product.name}"
+loading="lazy"
+onclick="openProduct(${product.id})"
+style="cursor:pointer">
+
+</div>
+
+<div class="product-info">
+
+<div
+class="product-title"
+onclick="openProduct(${product.id})"
+style="cursor:pointer">
+
+${product.name}
+
+</div>
+
+<div class="product-desc">
+${product.description}
+</div>
+
+<div class="stars">
+★★★★★
+</div>
+
+<div class="price-row">
+
+<div class="price">
+${formatPrice(product.price)}
+<small>تومان</small>
+</div>
+
+<button
+class="add-btn"
+onclick="addToCart(${product.id})">
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* SHOP */
+
+function renderShop(){
+
+const box=document.getElementById("shopProducts");
+
+let search=document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+let category=document
+.getElementById("categorySelect")
+.value;
+
+let sort=document
+.getElementById("sortSelect")
+.value;
+
+let list=products.filter(product=>{
+
+let searchMatch=
+product.name.toLowerCase().includes(search) ||
+product.description.toLowerCase().includes(search);
+
+let categoryMatch=
+category==="all" ||
+product.category===category;
+
+return searchMatch && categoryMatch;
+
+});
+
+if(sort==="low"){
+list.sort((a,b)=>a.price-b.price);
+}
+
+if(sort==="high"){
+list.sort((a,b)=>b.price-a.price);
+}
+
+document.getElementById("resultText").innerText=
+list.length+" محصول یافت شد";
+
+box.innerHTML=list.map(productCard).join("");
+
+}
+
+
+/* CATEGORY */
+
+function setCategory(category){
+
+showPage("shop");
+
+document.getElementById("categorySelect").value=category;
+
+renderShop();
+
+}
+
+
+/* DETAIL */
+
+function openProduct(id){
+
+const product=products.find(x=>x.id===id);
+
+if(!product)return;
+
+document.getElementById("detailImage").src=product.image;
+
+document.getElementById("detailName").innerText=product.name;
+
+document.getElementById("detailDescription").innerText=product.description;
+
+document.getElementById("detailPrice").innerText=
+formatPrice(product.price)+" تومان";
+
+document.getElementById("detailCategory").innerText=
+product.category;
+
+document.getElementById("detailAdd").onclick=function(){
+addToCart(product.id);
+};
+
+showPage("detail");
+
+}
+
+
+/* FAVORITES */
+
+function toggleFavorite(id){
+
+if(favorites.includes(id)){
+
+favorites=favorites.filter(x=>x!==id);
+
+showToast("از علاقه‌مندی‌ها حذف شد");
+
+}else{
+
+favorites.push(id);
+
+showToast("به علاقه‌مندی‌ها اضافه شد");
+
+}
+
+localStorage.setItem(
+"shl_demo_favorites",
+JSON.stringify(favorites)
+);
+
+renderHome();
+
+renderShop();
+
+}
+
+
+/* CART */
+
+function addToCart(id){
+
+const product=products.find(x=>x.id===id);
+
+if(!product)return;
+
+const item=cart.find(x=>x.id===id);
+
+if(item){
+item.qty++;
+}else{
+cart.push({
+id:id,
+qty:1
+});
+}
+
+saveCart();
+
+showToast(product.name+" به سبد خرید اضافه شد");
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"shl_demo_cart",
+JSON.stringify(cart)
+);
+
+renderCart();
+
+}
+
+
+function renderCart(){
+
+const box=document.getElementById("cartItems");
+
+let total=0;
+
+let count=0;
+
+if(cart.length===0){
+
+box.innerHTML=`
+
+<div style="text-align:center;padding:50px 10px;color:#667085">
+
+<div style="font-size:45px">🛒</div>
+
+<br>
+
+سبد خرید شما خالی است.
+
+</div>
+
+`;
+
+}else{
+
+box.innerHTML=cart.map(item=>{
+
+const product=products.find(x=>x.id===item.id);
+
+if(!product)return"";
+
+total+=product.price*item.qty;
+
+count+=item.qty;
+
+return `
+
+<div class="cart-item">
+
+<img src="${product.image}">
+
+<div class="cart-item-info">
+
+<strong>${product.name}</strong>
+
+<small>
+${formatPrice(product.price)} تومان
+</small>
+
+<div class="cart-controls">
+
+<button
+class="qty"
+onclick="changeQty(${product.id},-1)">
+−
+</button>
+
+<span>${item.qty}</span>
+
+<button
+class="qty"
+onclick="changeQty(${product.id},1)">
++
+</button>
+
+<button
+class="qty"
+onclick="removeCart(${product.id})">
+×
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+document.getElementById("cartTotal").innerText=
+formatPrice(total)+" تومان";
+
+document.getElementById("cartCount").innerText=count;
+
+}
+
+
+function changeQty(id,amount){
+
+const item=cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.qty+=amount;
+
+if(item.qty<=0){
+cart=cart.filter(x=>x.id!==id);
+}
+
+saveCart();
+
+}
+
+
+function removeCart(id){
+
+cart=cart.filter(x=>x.id!==id);
+
+saveCart();
+
+showToast("محصول حذف شد");
+
+}
+
+
+function openCart(){
+
+document.getElementById("cart").classList.add("active");
+
+document
+.getElementById("cartOverlay")
+.classList.add("active");
+
+renderCart();
+
+}
+
+
+function closeCart(){
+
+document.getElementById("cart").classList.remove("active");
+
+document
+.getElementById("cartOverlay")
+.classList.remove("active");
+
+}
+
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(cart.length===0){
+
+showToast("سبد خرید خالی است");
+
+return;
+
+}
+
+alert(
+"این نسخه نمایشی است.\n\n"+
+"برای پروژه واقعی می‌توان پرداخت آنلاین، "+
+"ثبت سفارش و پنل مدیریت را اضافه کرد."
+);
+
+}
+
+
+/* CONTACT */
+
+function sendMessage(){
+
+const name=document
+.getElementById("contactName")
+.value
+.trim();
+
+if(!name){
+
+showToast("لطفاً نام خود را وارد کنید");
+
+return;
+
+}
+
+showToast("پیام شما با موفقیت ثبت شد");
+
+document.getElementById("contactName").value="";
+document.getElementById("contactEmail").value="";
+document.getElementById("contactSubject").value="";
+document.getElementById("contactMessage").value="";
+
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.innerText=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2500);
+
+}
+
+
+/* PRICE */
+
+function formatPrice(price){
+
+return new Intl.NumberFormat("fa-IR").format(price);
+
+}
+
+
+/* START */
+
+renderHome();
+
+renderShop();
+
+renderCart();
+
+</script>
+
+</body>
+</html>

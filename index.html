@@ -2,181 +2,91 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>S.H.L | فروشگاه آینده</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.H.L | فروشگاه هوشمند</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root{
+  --bg:#07111f;
+  --card:#101d2e;
+  --text:#f7fbff;
+  --muted:#9fb0c3;
+  --cyan:#00e5ff;
+  --blue:#4f7cff;
+  --line:rgba(255,255,255,.09);
 }
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
 
 body{
+  margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:#070711;
+  background:#f4f7fb;
+  color:#101827;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input{
+  font-family:inherit;
+}
+
+.top{
+  background:#050b14;
   color:white;
-  overflow-x:hidden;
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:#7c3cff;
-  filter:blur(180px);
-  opacity:.18;
-  top:-150px;
-  right:-100px;
-  z-index:-1;
-}
-
-body:after{
-  content:"";
-  position:fixed;
-  width:400px;
-  height:400px;
-  background:#00e5ff;
-  filter:blur(180px);
-  opacity:.12;
-  bottom:-150px;
-  left:-100px;
-  z-index:-1;
+  text-align:center;
+  padding:9px;
+  font-size:13px;
 }
 
 header{
-  width:100%;
-  padding:18px 7%;
+  background:var(--bg);
+  color:white;
+  padding:18px 6%;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:20px;
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(7,7,17,.75);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  z-index:50;
+  border-bottom:1px solid var(--line);
 }
 
 .logo{
-  font-size:27px;
+  font-size:29px;
   font-weight:900;
-  letter-spacing:3px;
+  letter-spacing:4px;
 }
 
 .logo span{
-  color:#9b5cff;
+  color:var(--cyan);
 }
 
 nav{
   display:flex;
-  gap:28px;
-}
-
-nav a{
-  color:#aaa;
-  text-decoration:none;
-  transition:.3s;
+  gap:22px;
+  color:#c7d2df;
+  font-size:14px;
 }
 
 nav a:hover{
-  color:white;
+  color:var(--cyan);
 }
 
-.header-buttons{
-  display:flex;
-  gap:10px;
-}
-
-.icon-btn{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  border:1px solid #29293c;
-  background:#11111d;
+.cart{
+  background:rgba(0,229,255,.1);
+  border:1px solid rgba(0,229,255,.25);
   color:white;
-  cursor:pointer;
-  font-size:19px;
+  padding:10px 15px;
+  border-radius:12px;
 }
 
 .hero{
-  min-height:650px;
-  padding:80px 7%;
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  align-items:center;
-  gap:40px;
-}
-
-.hero-text small{
-  color:#9b5cff;
-  font-weight:bold;
-  font-size:15px;
-}
-
-.hero h1{
-  font-size:clamp(45px,6vw,82px);
-  line-height:1.05;
-  margin:20px 0;
-  font-weight:900;
-}
-
-.hero h1 span{
-  background:linear-gradient(90deg,#a66cff,#00e5ff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  color:#a7a7b8;
-  max-width:550px;
-  line-height:2;
-  font-size:17px;
-}
-
-.buttons{
-  margin-top:30px;
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  padding:15px 25px;
-  border-radius:15px;
-  border:0;
-  cursor:pointer;
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-
-.btn-main{
-  background:linear-gradient(135deg,#8b45ff,#5d25d9);
-  box-shadow:0 10px 35px rgba(130,60,255,.3);
-}
-
-.btn-dark{
-  background:#12121e;
-  border:1px solid #29293c;
-}
-
-.character-box{
-  height:500px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-}
-
-.circle{
-  width:390px;
-  height:390px;
-  border-radius:50%;
   background:
-    radial-gradient(circle at 50% 35%,#34344c,#11111e 60%,#080810);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:
-    0 0 100px rgba(133,70,255,.3),
-    inset 0 0 80px rgba(0,229,255,.08
+  radial-gradient(circle at 80% 20%,rgba(0,229,255,.18

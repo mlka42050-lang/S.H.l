@@ -2,42 +2,191 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>S.H.L</title>
+
 <style>
+*{box-sizing:border-box}
 body{
 margin:0;
-font-family:Arial,Tahoma;
+font-family:Tahoma,Arial;
+background:#f4f4f4;
+color:#111
+}
+header{
+background:#111;
+color:white;
+padding:18px 25px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0
+}
+.logo{
+font-size:28px;
+font-weight:bold;
+letter-spacing:4px
+}
+header button{
+background:white;
+border:0;
+padding:10px 16px;
+border-radius:10px;
+font-weight:bold
+}
+.hero{
+background:#111;
+color:white;
+margin:20px auto;
+max-width:1100px;
+padding:70px 30px;
+border-radius:25px
+}
+.hero h1{
+font-size:55px;
+margin:0
+}
+.hero p{
+color:#bbb;
+font-size:18px
+}
+.hero button{
+padding:13px 25px;
+border:0;
+border-radius:10px;
+font-weight:bold
+}
+main{
+max-width:1100px;
+margin:auto;
+padding:10px 20px 50px
+}
+h2{
+margin-top:30px
+}
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px
+}
+.card{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 20px #0001
+}
+.pic{
+height:150px;
+background:#eee;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px
+}
+.card h3{
+margin-bottom:5px
+}
+.price{
+font-weight:bold;
+margin:12px 0
+}
+.add{
+width:100%;
+padding:11px;
+background:#111;
+color:white;
+border:0;
+border-radius:9px
+}
+footer{
 background:#111;
 color:white;
 text-align:center;
+padding:30px
 }
-.box{
-padding:80px 20px;
+@media(max-width:700px){
+.products{
+grid-template-columns:repeat(2,1fr)
 }
-h1{
-font-size:60px;
-margin:0 0 20px;
 }
-p{
-font-size:20px;
-color:#ccc;
+@media(max-width:450px){
+.products{
+grid-template-columns:1fr
 }
-button{
-padding:15px 30px;
-border:0;
-border-radius:10px;
-font-size:16px;
+.hero h1{
+font-size:42px
+}
 }
 </style>
 </head>
+
 <body>
 
-<div class="box">
+<header>
+<div class="logo">S.H.L</div>
+<button onclick="alert('سبد خرید شما خالی است')">
+🛒 سبد خرید
+</button>
+</header>
+
+<section class="hero">
+
 <h1>S.H.L</h1>
-<p>فروشگاه اینترنتی S.H.L</p>
-<button>مشاهده محصولات</button>
+
+<p>فروشگاه مدرن و متفاوت شما</p>
+
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+مشاهده محصولات
+</button>
+
+</section>
+
+<main>
+
+<h2>محصولات منتخب</h2>
+
+<div class="products" id="products">
+
+<div class="card">
+<div class="pic">🎧</div>
+<h3>هدفون بی‌سیم</h3>
+<p>صدای باکیفیت و طراحی مدرن</p>
+<div class="price">۱,۲۵۰,۰۰۰ تومان</div>
+<button class="add" onclick="alert('محصول به سبد اضافه شد')">
+افزودن به سبد
+</button>
 </div>
+
+<div class="card">
+<div class="pic">⌚</div>
+<h3>ساعت هوشمند</h3>
+<p>مناسب استفاده روزمره</p>
+<div class="price">۲,۴۰۰,۰۰۰ تومان</div>
+<button class="add" onclick="alert('محصول به سبد اضافه شد')">
+افزودن به سبد
+</button>
+</div>
+
+<div class="card">
+<div class="pic">👟</div>
+<h3>کفش اسپرت</h3>
+<p>راحت و مناسب روزمره</p>
+<div class="price">۱,۷۵۰,۰۰۰ تومان</div>
+<button class="add" onclick="alert('محصول به سبد اضافه شد')">
+افزودن به سبد
+</button>
+</div>
+
+</div>
+
+</main>
+
+<footer>
+<strong>S.H.L</strong>
+<p>فروشگاه اینترنتی S.H.L</p>
+</footer>
 
 </body>
 </html>

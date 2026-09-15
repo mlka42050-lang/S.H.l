@@ -2,91 +2,317 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="S.H.L | فروشگاه اینترنتی مدرن">
-<meta name="author" content="S.H.L">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>S.H.L | فروشگاه اینترنتی</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial,sans-serif;background:#f5f5f5;color:#171717}
+button,input{font-family:inherit}
+button{cursor:pointer}
 
-/* =========================
-   RESET
-========================= */
+header{background:#111;color:#fff;position:sticky;top:0;z-index:10}
+.nav{max-width:1100px;margin:auto;padding:15px 20px;display:flex;align-items:center;gap:18px}
+.logo{font-size:27px;font-weight:bold;letter-spacing:4px;white-space:nowrap}
+.search{flex:1}
+.search input{width:100%;padding:12px 16px;border:0;border-radius:12px;outline:0}
+.cart{background:#fff;color:#111;padding:11px 16px;border:0;border-radius:11px;font-weight:bold}
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+.hero{max-width:1100px;margin:22px auto;padding:55px 35px;border-radius:25px;color:white;background:linear-gradient(135deg,#050505,#333);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(40px,7vw,70px);line-height:1.2}
+.hero p{color:#ccc;margin:15px 0;font-size:16px}
+.hero button{padding:12px 22px;border:0;border-radius:11px;font-weight:bold}
+.hero:after{content:"S.H.L";position:absolute;left:-15px;bottom:-60px;font-size:150px;font-weight:bold;color:white;opacity:.04}
+
+main{max-width:1100px;margin:auto;padding:10px 20px 50px}
+.title{margin:30px 0 15px}
+.cats{display:flex;gap:8px;flex-wrap:wrap}
+.cat{padding:9px 16px;border:1px solid #ddd;background:white;border-radius:30px}
+.cat.active,.cat:hover{background:#111;color:white}
+
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:white;border-radius:17px;overflow:hidden;border:1px solid #e5e5e5;transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 25px #0001}
+.pic{height:170px;display:flex;align-items:center;justify-content:center;font-size:65px;background:#eee}
+.info{padding:15px}
+.info h3{margin-bottom:5px}
+.info p{font-size:12px;color:#777;min-height:40px}
+.price{font-weight:bold;margin:10px 0}
+.add{width:100%;padding:10px;background:#111;color:white;border:0;border-radius:9px}
+
+.promo{margin:35px 0;padding:25px;border-radius:20px;background:#111;color:white;display:flex;justify-content:space-between;align-items:center}
+.promo button{padding:10px 18px;border:0;border-radius:10px}
+
+footer{background:#111;color:white;text-align:center;padding:30px}
+footer p{color:#999;font-size:13px;margin-top:7px}
+
+.cartbox{display:none;position:fixed;left:15px;top:85px;width:320px;max-width:90%;background:white;padding:20px;border-radius:17px;box-shadow:0 10px 40px #0003;z-index:20}
+.cartbox.show{display:block}
+.cartitem{padding:9px 0;border-bottom:1px solid #eee;font-size:13px;display:flex;justify-content:space-between}
+
+@media(max-width:800px){
+.products{grid-template-columns:repeat(2,1fr)}
+.nav{flex-wrap:wrap}
+.logo{width:100%;text-align:center}
+.search{width:100%}
+.cart{width:100%}
+.hero{margin:15px;padding:40px 22px}
 }
 
-html{
-    scroll-behavior:smooth;
+@media(max-width:500px){
+.products{gap:9px}
+.pic{height:130px;font-size:48px}
+.info{padding:10px}
+.info h3{font-size:14px}
+.promo{display:block;text-align:center}
+.promo button{margin-top:15px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+
+<div class="logo">S.H.L</div>
+
+<div class="search">
+<input id="search" placeholder="جستجوی محصول..." oninput="searchProducts()">
+</div>
+
+<button class="cart" onclick="toggleCart()">
+🛒 سبد خرید (<span id="count">0</span>)
+</button>
+
+</div>
+</header>
+
+<section class="hero">
+
+<h1>S.H.L</h1>
+
+<p>خرید ساده، مدرن و متفاوت</p>
+
+<button onclick="goProducts()">مشاهده محصولات</button>
+
+</section>
+
+<main>
+
+<h2 class="title">دسته‌بندی‌ها</h2>
+
+<div class="cats">
+
+<button class="cat active" onclick="filter('all',this)">همه</button>
+<button class="cat" onclick="filter('digital',this)">دیجیتال</button>
+<button class="cat" onclick="filter('fashion',this)">پوشاک</button>
+<button class="cat" onclick="filter('home',this)">خانه</button>
+
+</div>
+
+<h2 class="title" id="productsTitle">محصولات منتخب</h2>
+
+<div class="products" id="products">
+
+<div class="card" data-cat="digital" data-name="هدفون">
+<div class="pic">🎧</div>
+<div class="info">
+<h3>هدفون بی‌سیم</h3>
+<p>صدای باکیفیت و طراحی مدرن</p>
+<div class="price">۱,۲۵۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('هدفون بی‌سیم',1250000)">افزودن به سبد</button>
+</div>
+</div>
+
+<div class="card" data-cat="digital" data-name="ساعت">
+<div class="pic">⌚</div>
+<div class="info">
+<h3>ساعت هوشمند</h3>
+<p>مناسب استفاده روزمره</p>
+<div class="price">۲,۴۰۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('ساعت هوشمند',2400000)">افزودن به سبد</button>
+</div>
+</div>
+
+<div class="card" data-cat="fashion" data-name="هودی">
+<div class="pic">👕</div>
+<div class="info">
+<h3>هودی اسپرت</h3>
+<p>ساده و شیک</p>
+<div class="price">۸۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('هودی اسپرت',890000)">افزودن به سبد</button>
+</div>
+</div>
+
+<div class="card" data-cat="fashion" data-name="کفش">
+<div class="pic">👟</div>
+<div class="info">
+<h3>کفش اسپرت</h3>
+<p>راحت و مناسب روزمره</p>
+<div class="price">۱,۷۵۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('کفش اسپرت',1750000)">افزودن به سبد</button>
+</div>
+</div>
+
+<div class="card" data-cat="home" data-name="چراغ">
+<div class="pic">💡</div>
+<div class="info">
+<h3>چراغ مطالعه</h3>
+<p>طراحی مینیمال</p>
+<div class="price">۵۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('چراغ مطالعه',590000)">افزودن به سبد</button>
+</div>
+</div>
+
+<div class="card" data-cat="home" data-name="ماگ">
+<div class="pic">☕</div>
+<div class="info">
+<h3>ماگ سرامیکی</h3>
+<p>ساده و زیبا</p>
+<div class="price">۲۹۰,۰۰۰ تومان</div>
+<button class="add" onclick="add('ماگ سرامیکی',290000)">افزودن به سبد</button>
+</div>
+</div>
+
+</div>
+
+<section class="promo">
+
+<div>
+<h2>خرید خود را شروع کنید 🚀</h2>
+<p>محصول مورد علاقه‌تان را انتخاب کنید.</p>
+</div>
+
+<button onclick="goProducts()">محصولات</button>
+
+</section>
+
+</main>
+
+<div class="cartbox" id="cartbox">
+
+<h2>🛒 سبد خرید</h2>
+
+<div id="items">سبد خرید خالی است.</div>
+
+<p style="margin-top:15px">
+مجموع:
+<strong id="total">۰</strong>
+تومان
+</p>
+
+</div>
+
+<footer>
+
+<strong>S.H.L</strong>
+
+<p>فروشگاه اینترنتی S.H.L</p>
+
+<p>© 2026 S.H.L</p>
+
+</footer>
+
+<script>
+
+let cart=[];
+
+function add(name,price){
+
+cart.push({name:name,price:price});
+update();
+document.getElementById("cartbox").classList.add("show");
+
 }
 
-body{
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f7f7f8;
-    color:#151515;
-    line-height:1.7;
+function update(){
+
+document.getElementById("count").textContent=cart.length;
+
+let items=document.getElementById("items");
+let total=0;
+
+if(!cart.length){
+
+items.innerHTML="سبد خرید خالی است.";
+document.getElementById("total").textContent="۰";
+return;
+
 }
 
-button,
-input{
-    font-family:inherit;
+items.innerHTML="";
+
+cart.forEach(function(x,i){
+
+total+=x.price;
+
+items.innerHTML+=`
+<div class="cartitem">
+<span>${x.name}</span>
+<button onclick="removeItem(${i})">❌</button>
+</div>
+`;
+
+});
+
+document.getElementById("total").textContent=
+total.toLocaleString("fa-IR");
+
 }
 
-button{
-    border:0;
-    cursor:pointer;
+function removeItem(i){
+
+cart.splice(i,1);
+update();
+
 }
 
+function toggleCart(){
 
-/* =========================
-   HEADER
-========================= */
+document.getElementById("cartbox").classList.toggle("show");
 
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(17,17,17,.96);
-    backdrop-filter:blur(15px);
-    color:white;
-    box-shadow:0 5px 25px rgba(0,0,0,.12);
 }
 
-.nav{
-    max-width:1200px;
-    margin:auto;
-    min-height:75px;
-    padding:12px 20px;
-    display:flex;
-    align-items:center;
-    gap:25px;
+function filter(cat,btn){
+
+document.querySelectorAll(".cat").forEach(function(x){
+x.classList.remove("active");
+});
+
+btn.classList.add("active");
+
+document.querySelectorAll(".card").forEach(function(x){
+
+x.style.display=
+cat==="all"||x.dataset.cat===cat?"":"none";
+
+});
+
 }
 
-.logo{
-    color:white;
-    text-decoration:none;
-    font-size:29px;
-    font-weight:900;
-    letter-spacing:5px;
-    white-space:nowrap;
+function searchProducts(){
+
+let q=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(function(x){
+
+x.style.display=
+x.dataset.name.toLowerCase().includes(q)?"":"none";
+
+});
+
 }
 
-.search{
-    flex:1;
+function goProducts(){
+
+document.getElementById("productsTitle").scrollIntoView({
+behavior:"smooth"
+});
+
 }
 
-.search-box{
-    position:relative;
-}
+</script>
 
-.search input{
-    width:100%;
-    height:46px;
-    padding:0 45px 0 18px;
-    border-radius:14px;
-    border:
+</body>
+</html>

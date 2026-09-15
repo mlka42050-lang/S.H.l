@@ -14,201 +14,136 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Tahoma,Arial,sans-serif;background:#f5f6fa;color:#171923}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:#f5f6fa;
+color:#171923;
+}
+
 button,input{font:inherit}
 button{cursor:pointer;border:0}
-header{background:#111827;color:#fff;position:sticky;top:0;z-index:20}
-.nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;gap:20px}
-.logo{font-size:27px;font-weight:900;letter-spacing:3px;color:#fff;text-decoration:none}
-.search{flex:1;max-width:520px}
-.search input{width:100%;padding:12px 18px;border-radius:12px;border:1px solid #ddd;outline:none}
-.cart-btn{background:#fff;color:#111;padding:11px 16px;border-radius:12px;font-weight:bold}
-.hero{max-width:1150px;margin:25px auto;padding:55px 30px;border-radius:25px;background:linear-gradient(135deg,#111827,#374151);color:white;display:flex;justify-content:space-between;align-items:center}
-.hero h1{font-size:clamp(34px,6vw,62px);margin-bottom:15px}
-.hero p{font-size:18px;color:#d1d5db;line-height:1.9}
-.hero .cta{margin-top:22px;padding:13px 24px;border-radius:12px;background:#fff;color:#111827;font-weight:bold}
-.hero-mark{font-size:90px;font-weight:900;letter-spacing:10px;opacity:.12}
-main{max-width:1150px;margin:auto;padding:0 20px 50px}
-.section-title{margin:30px 0 18px}
-.categories{display:flex;gap:10px;flex-wrap:wrap}
-.cat{padding:9px 16px;border-radius:999px;background:white;border:1px solid #e5e7eb}
-.cat.active,.cat:hover{background:#111827;color:white}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #1118270d;border:1px solid #eee;transition:.2s}
-.card:hover{transform:translateY(-4px)}
-.pic{height:210px;background:linear-gradient(135deg,#e5e7eb,#f9fafb);display:flex;align-items:center;justify-content:center;font-size:65px}
-.info{padding:15px}
-.info h3{font-size:17px;margin-bottom:8px}
-.info p{font-size:13px;color:#6b7280;min-height:38px;line-height:1.6}
-.price{font-size:18px;font-weight:bold;margin:12px 0}
-.add{width:100%;padding:11px;border-radius:11px;background:#111827;color:#fff}
-.empty{padding:30px;background:white;border-radius:15px;text-align:center;color:#777;grid-column:1/-1}
-.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:30}
-.overlay.show{display:block}
-.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,94vw);background:#fff;z-index:31;padding:22px;transform:translateX(100%);transition:.3s;overflow:auto}
-.drawer.show{transform:translateX(0)}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.close{background:#eee;border-radius:9px;padding:7px 11px}
-.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #eee}
-.cart-emoji{width:55px;height:55px;background:#f3f4f6;border-radius:10px;display:grid;place-items:center;font-size:28px}
-.cart-item .grow{flex:1}
-.qty{display:flex;align-items:center;gap:8px;margin-top:7px}
-.qty button{width:27px;height:27px;border-radius:7px;background:#eee}
-.total{font-size:20px;font-weight:bold;margin:20px 0}
-.checkout{width:100%;padding:14px;border-radius:12px;background:#111827;color:#fff;font-weight:bold}
-footer{background:#111827;color:#d1d5db;text-align:center;padding:30px}
-@media(max-width:850px){.products{grid-template-columns:repeat(2,1fr)}.hero-mark{display:none}}
-@media(max-width:560px){
-.nav{flex-wrap:wrap}.search{order:3;flex-basis:100%;max-width:none}
-.hero{margin-top:15px;padding:35px 22px}
-.products{grid-template-columns:1fr 1fr}.pic{height:160px;font-size:48px}
-}
-</style>
-</head>
 
-<body>
-
-<header>
-<div class="nav">
-<a class="logo" href="/">S.H.L</a>
-
-<div class="search">
-<input id="search" type="search" aria-label="جست‌وجوی محصول" placeholder="جست‌وجوی محصول...">
-</div>
-
-<button class="cart-btn" onclick="openCart()">
-🛒 سبد خرید <span id="count">0</span>
-</button>
-</div>
-</header>
-
-<main>
-
-<section class="hero">
-<div>
-<h1>S.H.L؛ فروشگاه اینترنتی</h1>
-<p>فروشگاه آنلاین مدرن برای خریدی ساده، سریع و مطمئن.</p>
-<button class="cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-مشاهده محصولات
-</button>
-</div>
-
-<div class="hero-mark">S.H.L</div>
-</section>
-
-<section id="shop">
-
-<div class="section-title">
-<h2>محصولات فروشگاه S.H.L</h2>
-</div>
-
-<div class="categories" id="categories"></div>
-
-<div class="products" id="products"></div>
-
-</section>
-
-</main>
-
-<footer>
-<strong>S.H.L | فروشگاه اینترنتی</strong>
-<p style="margin-top:8px">فروشگاه اینترنتی اختصاصی شما © 2026</p>
-</footer>
-
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-
-<aside class="drawer" id="drawer">
-
-<div class="drawer-head">
-<h2>سبد خرید</h2>
-<button class="close" onclick="closeCart()">✕</button>
-</div>
-
-<div id="cart"></div>
-
-<div class="total">
-مجموع: <span id="total">۰</span> تومان
-</div>
-
-<button class="checkout" onclick="checkout()">
-ادامه برای پرداخت
-</button>
-
-</aside>
-
-<script>
-
-const products=[
-
-{id:1,name:"هدفون S.H.L Pro",cat:"دیجیتال",price:1890000,emoji:"🎧",desc:"صدای باکیفیت و طراحی مدرن"},
-
-{id:2,name:"ساعت هوشمند S.H.L",cat:"دیجیتال",price:2490000,emoji:"⌚",desc:"ظاهر شیک برای استفاده روزمره"},
-
-{id:3,name:"کیف روزمره",cat:"پوشاک",price:890000,emoji:"👜",desc:"سبک، کاربردی و مناسب استفاده روزانه"},
-
-{id:4,name:"کفش اسپرت",cat:"پوشاک",price:1790000,emoji:"👟",desc:"راحت و مناسب فعالیت‌های روزمره"},
-
-{id:5,name:"عینک آفتابی",cat:"اکسسوری",price:690000,emoji:"🕶️",desc:"طراحی ساده و جذاب"},
-
-{id:6,name:"کوله‌پشتی S.H.L",cat:"اکسسوری",price:1190000,emoji:"🎒",desc:"فضادار و مناسب مدرسه و سفر"},
-
-{id:7,name:"ماگ اختصاصی S.H.L",cat:"خانه",price:290000,emoji:"☕",desc:"ماگ با طراحی مینیمال"},
-
-{id:8,name:"چراغ رومیزی",cat:"خانه",price:790000,emoji:"💡",desc:"مناسب میز کار و مطالعه"}
-
-];
-
-let selected="همه";
-
-let cart=JSON.parse(localStorage.getItem("shlCart")||"[]");
-
-const money=n=>n.toLocaleString("fa-IR");
-
-function renderCategories(){
-
-const cats=["همه",...new Set(products.map(p=>p.cat))];
-
-document.getElementById("categories").innerHTML=cats.map(c=>
-`<button class="cat ${c===selected?"active":""}" onclick="filterCat('${c}')">${c}</button>`
-).join("");
-
+header{
+background:#111827;
+color:#fff;
+position:sticky;
+top:0;
+z-index:20;
 }
 
-function renderProducts(){
+.nav{
+max-width:1150px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+align-items:center;
+gap:20px;
+}
 
-const q=document.getElementById("search").value.trim().toLowerCase();
+.logo{
+font-size:27px;
+font-weight:900;
+letter-spacing:3px;
+color:#fff;
+text-decoration:none;
+}
 
-const list=products.filter(p=>
-(selected==="همه"||p.cat===selected)&&
-(p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q))
-);
+.search{
+flex:1;
+max-width:520px;
+}
 
-document.getElementById("products").innerHTML=list.length?
+.search input{
+width:100%;
+padding:12px 18px;
+border-radius:12px;
+border:1px solid #ddd;
+outline:none;
+}
 
-list.map(p=>`
+.cart-btn{
+background:#fff;
+color:#111;
+padding:11px 16px;
+border-radius:12px;
+font-weight:bold;
+}
 
-<article class="card">
+.hero{
+max-width:1150px;
+margin:25px auto;
+padding:55px 30px;
+border-radius:25px;
+background:linear-gradient(135deg,#111827,#374151);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-<div class="pic">${p.emoji}</div>
+.hero h1{
+font-size:clamp(34px,6vw,62px);
+margin-bottom:15px;
+}
 
-<div class="info">
+.hero p{
+font-size:18px;
+color:#d1d5db;
+line-height:1.9;
+}
 
-<h3>${p.name}</h3>
+.hero .cta{
+margin-top:22px;
+padding:13px 24px;
+border-radius:12px;
+background:#fff;
+color:#111827;
+font-weight:bold;
+}
 
-<p>${p.desc}</p>
+.hero-mark{
+font-size:90px;
+font-weight:900;
+letter-spacing:10px;
+opacity:.12;
+}
 
-<div class="price">${money(p.price)} تومان</div>
+main{
+max-width:1150px;
+margin:auto;
+padding:0 20px 50px;
+}
 
-<button class="add" onclick="addToCart(${p.id})">
-افزودن به سبد
-</button>
+.section-title{
+margin:30px 0 18px;
+}
 
-</div>
+.categories{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
 
-</article>
+.cat{
+padding:9px 16px;
+border-radius:999px;
+background:white;
+border:1px solid #e5e7eb;
+}
 
-`).join("")
+.cat.active,.cat:hover{
+background:#111827;
+color:white;
+}
 
-:
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
 
-`<div class="empty">محصولی پیدا نشد.</div
+.card{
+background:white;
+border-radius:
